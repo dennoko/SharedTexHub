@@ -22,8 +22,7 @@ When opened, the tool automatically scans all materials in your project (current
 *   **Search**: Use the search bar at the top left to filter by name.
 *   **Sort by**: Change the sorting order using the dropdown at the top right.
     *   **Name**: Alphabetical order.
-    *   **Color**: Sort by hue and saturation.
-    *   **ColorSpread**: Sort by color variance (Simple vs Complex).
+    *   **Color**: Sort by color variance and hue.
 *   **Scale**: Use the slider at the bottom right to adjust the thumbnail size.
 
 ### 4. Applying to Materials

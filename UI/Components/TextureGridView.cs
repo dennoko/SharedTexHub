@@ -10,13 +10,12 @@ namespace SharedTexHub.UI.Components
     {
         private Vector2 scrollPosition;
         private string searchString = "";
-        private SortOption sortOption = SortOption.Name;
+        private SortOption sortOption = SortOption.Color;
 
         public enum SortOption
         {
             Name,
-            Color,
-            ColorSpread
+            Color
         }
         
         private float itemSize = 100f; // Default size
@@ -25,7 +24,7 @@ namespace SharedTexHub.UI.Components
         private List<TextureInfo> cachedList = null;
         private List<TextureInfo> lastSourceList = null; // Track reference
         private string lastSearchString = "";
-        private SortOption lastSortOption = SortOption.Name;
+        private SortOption lastSortOption = SortOption.Color;
         private int lastRawListCount = -1;
 
         public void Draw(List<TextureInfo> textures, Category currentCategory)
@@ -181,11 +180,6 @@ namespace SharedTexHub.UI.Components
                 case SortOption.Name:
                     return list.OrderBy(t => t.path);
                 case SortOption.Color:
-                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) 
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeHue(t.mainHsv.x)) 
-                               .ThenBy(t => t.mainHsv.y) 
-                               .ThenBy(t => t.mainHsv.z);
-                case SortOption.ColorSpread:
                     return list.OrderBy(t => !IsGrayscale(t.mainHsv.y))
                                .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeSpread(t.colorSpread, 10)) 
                                .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x));
