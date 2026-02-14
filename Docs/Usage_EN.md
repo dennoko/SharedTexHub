@@ -45,5 +45,14 @@ Method 2: Direct Folder Access
 4.  They will be automatically detected when you return to Unity.
 
 ## Other Features
-*   **Rescan**: If new textures are not showing up, click the **Force Scan** button at the top right (search icon).
-*   **Context Menu**: Right-click on a texture in the list for more options like "Copy to Library".
+*   **Rescan**: If updated textures are not appearing, click the **Force Scan** button (search icon) to refresh the database.
+*   **Context Menu**: Right-click on any texture in the list for options:
+    *   **Copy to Library**: Copies the texture to the SharedTexHub library folder.
+    *   **Ignore**: Hide this texture from the list (useful for false positives).
+
+### Ignore List
+You can hide textures that are incorrectly detected or not needed.
+1.  **Right-click > Ignore** on a texture to hide it.
+2.  To restore it, toggle the **"Show Ignored"** button in the toolbar.
+3.  Right-click the hidden texture and select **Restore**.
+
