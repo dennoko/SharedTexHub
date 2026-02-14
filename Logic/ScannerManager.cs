@@ -18,13 +18,13 @@ namespace SharedTexHub.Logic
         // Configuration
         private const float MAX_TIME_PER_FRAME = 0.01f; // 10ms
 
-        public static void StartFullScan()
+        public static void StartFullScan(bool forceRebuild = false)
         {
             if (isScanning) return;
             
             isScanning = true;
             Progress = 0f;
-            scanEnumerator = RunFullScan();
+            scanEnumerator = RunFullScan(forceRebuild);
             
             EditorApplication.update += UpdateScan;
         }
@@ -67,13 +67,19 @@ namespace SharedTexHub.Logic
             EditorUtility.ClearProgressBar();
         }
 
-        private static IEnumerator<float> RunFullScan()
+        private static IEnumerator<float> RunFullScan(bool forceRebuild)
         {
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             HashSet<(string, Category)> visitedItems = new HashSet<(string, Category)>();
             
             // Initialization
-            // DatabaseManager.Clear(); // REMOVED for incremental scan
+            if (forceRebuild)
+            {
+                DatabaseManager.Clear();
+                DatabaseManager.Save(); // Ensure empty state is saved/notified
+                Debug.Log("[SharedTexHub] Force Rebuild: Database cleared.");
+            }
+
             HashGenerator.ClearCache();
             
             yield return 0.05f;

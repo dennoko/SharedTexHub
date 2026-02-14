@@ -55,7 +55,8 @@ namespace SharedTexHub.UI
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(60)))
             {
-                Logic.ScannerManager.StartFullScan();
+                // Force rebuild if Debug Mode is active
+                SharedTexHub.Logic.ScannerManager.StartFullScan(SharedTexHub.UI.Components.TextureGridView.ShowDebugColor);
             }
             GUILayout.EndHorizontal();
 

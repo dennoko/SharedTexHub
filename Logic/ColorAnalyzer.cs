@@ -11,24 +11,62 @@ namespace SharedTexHub.Logic
         {
             Texture2D texture = AssetPreview.GetAssetPreview(AssetDatabase.LoadAssetAtPath<Texture>(info.path));
             
-            // Fallback if AssetPreview is not ready or null
-            if (texture == null)
-            {
-                 // Try MiniThumbnail
-                 texture = AssetPreview.GetMiniThumbnail(AssetDatabase.LoadAssetAtPath<Object>(info.path));
-            }
+                // Fallback if AssetPreview is not ready, null, or not readable
+                if (texture == null || !texture.isReadable)
+                {
+                    // Try MiniThumbnail first as it might be faster/ready
+                    texture = AssetPreview.GetMiniThumbnail(AssetDatabase.LoadAssetAtPath<Object>(info.path));
+                }
 
-            if (texture == null) return;
+                // If still null or not readable, try loading from disk
+                bool isTempTexture = false;
+                if (texture == null || !texture.isReadable)
+                {
+                    if (System.IO.File.Exists(info.path))
+                    {
+                        try 
+                        {
+                            byte[] bytes = System.IO.File.ReadAllBytes(info.path);
+                            texture = new Texture2D(2, 2);
+                            if (texture.LoadImage(bytes))
+                            {
+                                isTempTexture = true;
+                            }
+                            else
+                            {
+                                Object.DestroyImmediate(texture);
+                                texture = null;
+                            }
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Debug.LogWarning($"[SharedTexHub] Failed to load texture from disk: {info.path}. Error: {ex.Message}");
+                            if (texture != null) Object.DestroyImmediate(texture);
+                            texture = null;
+                        }
+                    }
+                }
 
-            // Make sure texture is readable (AssetPreview usually returns a readable copy)
-            // But just in case, catch exceptions
-            try
-            {
-                if (!texture.isReadable) return;
+                if (texture == null) return;
+
+                // Make sure texture is readable
+                try
+                {
+                    if (!texture.isReadable) 
+                {
+                    if (isTempTexture) Object.DestroyImmediate(texture);
+                    return;
+                }
 
                 int w = texture.width;
                 int h = texture.height;
                 Color[] pixels = texture.GetPixels();
+                
+                // If we created a temp texture, destroy it now that we have pixels
+                if (isTempTexture)
+                {
+                    Object.DestroyImmediate(texture);
+                }
 
                 // Determine if we should apply circular mask (only for MatCap category)
                 bool applyCircularMask = info.category == Category.MatCap;

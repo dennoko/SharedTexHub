@@ -27,6 +27,8 @@ namespace SharedTexHub.UI.Components
         private SortOption lastSortOption = SortOption.Color;
         private int lastRawListCount = -1;
 
+        public static bool ShowDebugColor { get; set; } = false;
+
         public void Draw(List<TextureInfo> textures, Category currentCategory)
         {
             // Search Bar
@@ -37,6 +39,10 @@ namespace SharedTexHub.UI.Components
                 searchString = newSearchString;
                 cachedList = null; // Invalidate cache
             }
+
+            // Debug Toggle
+            ShowDebugColor = GUILayout.Toggle(ShowDebugColor, "Debug", EditorStyles.toolbarButton, GUILayout.Width(50));
+
             GUILayout.FlexibleSpace();
             
             // Sort Option
@@ -154,6 +160,7 @@ namespace SharedTexHub.UI.Components
             GUILayout.EndHorizontal();
         }
 
+
         private void UpdateCache(List<TextureInfo> sourceList)
         {
             // Filter
@@ -228,9 +235,22 @@ namespace SharedTexHub.UI.Components
                 }
 
                 // Draw Texture Preview
-                if (preview != null)
+                if (preview != null && !ShowDebugColor)
                 {
                     GUI.DrawTexture(rect, preview, ScaleMode.ScaleToFit);
+                }
+                else if (ShowDebugColor)
+                {
+                    Color c = Color.HSVToRGB(info.mainHsv.x, info.mainHsv.y, info.mainHsv.z);
+                    EditorGUI.DrawRect(rect, c);
+                    
+                    // Contrast text color
+                    Color textColor = info.mainHsv.z > 0.5f ? Color.black : Color.white;
+                    GUIStyle debugStyle = new GUIStyle(EditorStyles.miniLabel);
+                    debugStyle.normal.textColor = textColor;
+                    
+                    int tier = GetColorTier(info.mainHsv);
+                    GUI.Label(rect, $"T:{tier}\nH:{info.mainHsv.x:F2}\nS:{info.mainHsv.y:F2}\nV:{info.mainHsv.z:F2}", debugStyle);
                 }
                 else
                 {
