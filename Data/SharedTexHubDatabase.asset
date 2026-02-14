@@ -1,0 +1,349 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e87f7d8253ea847ab0882346717b3d, type: 3}
+  m_Name: SharedTexHubDatabase
+  m_EditorClassIdentifier: 
+  textures:
+  - guid: 8994c086cca28044fbeeb46600072004
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Mat.jpg"
+    category: 0
+  - guid: 5e79de0f9d1fada43b278ace10a7ff28
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Ring/Tex/Matcap
+      3.png"
+    category: 0
+  - guid: 977023464b1abf742ab218804f590537
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/CROCO B.png"
+    category: 1
+  - guid: 6c8783779a20e2e48a93c0917117770b
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/CROCO NM.png"
+    category: 2
+  - guid: 9601322ce382dfb499f5d346e3f79acd
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/CROCO A.png"
+    category: 1
+  - guid: 4ca3b76a5a81bc744a6015463482740a
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/fabrics_0072_ao_2k.jpg"
+    category: 1
+  - guid: 713735286b052714a9ed8d8224d9f96c
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/fabrics_0072_normal_directx_2k.png"
+    category: 2
+  - guid: 345371028a258954cb95a51124ca9430
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/Cashmere BW.png"
+    category: 1
+  - guid: ff6098e737f39c047954e4eae0c20067
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/CASHMERE NM.png"
+    category: 2
+  - guid: 95bcd5a9f5b5f7f49b3b4699cffbfaff
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/Cashmere tileB.png"
+    category: 1
+  - guid: 0ef59110818df454780cdbf6026cb2dc
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
+      CASHMERE/TEX/cashmere_normal_map.png"
+    category: 2
+  - guid: e58c1f0eaf7a832479c7423fd9e93bd5
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      C Mask.jpg"
+    category: 1
+  - guid: af99fb5050d67f44eb8dc6730fac329b
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      C Normal.jpg"
+    category: 2
+  - guid: a391bbb7964d46841ba5d50c24a757b1
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/silk
+      normal fabric 2.bmp"
+    category: 2
+  - guid: 6cccd7351ee8efa4fbc7e2d7c18d4d03
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Gloves/Tex/Leather
+      Dtl Map.png"
+    category: 2
+  - guid: 391f8694b41c1e24eb42f2818870da8c
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Linen
+      Fabric 1.png"
+    category: 2
+  - guid: 7557be84313afa643a58a74da9470a02
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/SAUVAGE matcap.png"
+    category: 0
+  - guid: 3bb2f517a73b279489f0175e1d680756
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Fabric
+      #2 1.png"
+    category: 2
+  - guid: ed3b7e2284da78a45b5ea4174ca92c64
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      normal.png"
+    category: 2
+  - guid: d7a8dfc7a582de34fa935d56c56b4c7f
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      BNormal.png"
+    category: 2
+  - guid: 771612d8d0dcd93479bfdab7d5d4f7fe
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      C.jpg"
+    category: 1
+  - guid: 0b6ef850e5c7a4a4aa1fda1c906bb14e
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Stole
+      D Normal.png"
+    category: 2
+  - guid: 9250c931db2315b4ea8f5bb4acca8cc1
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Snake Map.jpg"
+    category: 1
+  - guid: 320720868fd860a4f9c892d8ae62a743
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Snake Normal.png"
+    category: 2
+  - guid: 0c6b844db38f8614cab184bb53546949
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Ring/Tex/Holographic
+      Foil 4.png"
+    category: 0
+  - guid: 3d60f06e2ef8801428c90ea64bc9f696
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
+      1 C.png"
+    category: 0
+  - guid: ae01c0ee17814ee46b8c14cbac1ba6b9
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
+      3.jpg"
+    category: 0
+  - guid: 7e9d1f1cc6a69754080dd6b7d9c58116
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
+      1 B.png"
+    category: 0
+  - guid: f56794ac7937afc4591089c260c20c99
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
+      2.jpg"
+    category: 0
+  - guid: 31e28309eff1f0a4d8178ea56248e09d
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
+      1.png"
+    category: 0
+  - guid: 4677bacb99f9a1c429ceb8ee36568780
+    path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Holographic
+      Foil 4.png"
+    category: 0
+  - guid: 5e230a58af4f34441bb70e30747ef746
+    path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat2.png
+    category: 0
+  - guid: 6df4f0c16cf543a428885ddfadc7e53d
+    path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat1.png
+    category: 0
+  - guid: 26b2da03c60ce984e8cd75ec80558b21
+    path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat4.png
+    category: 0
+  - guid: 8d1d23acc83da7d45843794ecb8de447
+    path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat3.png
+    category: 0
+  - guid: db9775d6924849345bba0e5f85097684
+    path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat5.png
+    category: 0
+  - guid: 28df4b798f65dda49a7807765f6073a0
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Block Sole
+      Lofa/_TEX/Matcap 1.png
+    category: 0
+  - guid: cbf9ddadf39a24046a1a45e0b6e43985
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Block Sole
+      Lofa/_TEX/Matcap 2.png
+    category: 0
+  - guid: b52b4bf3ec3b027409478b84ebbeaa81
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Jacket/_TEX/Matcap
+      1.png
+    category: 0
+  - guid: b8377358114ccda429cf08731d0df596
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Jacket/_TEX/logo
+      Decal.png
+    category: 4
+  - guid: 6aad9fd9295d45d47b479f5dfab6ec5e
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      1.png
+    category: 0
+  - guid: b7e4ed010803f674a81e06313ae64526
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Knit Onepiece/_TEX/logo
+      Decal.png
+    category: 4
+  - guid: cdb188f777f99774ba7d6de3ef629910
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      4.png
+    category: 0
+  - guid: 43ff5d6ef134af24e88fc663c2c1da00
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      2.png
+    category: 0
+  - guid: 0419e0e1be8317b49a683d8ff4274bce
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      8.png
+    category: 0
+  - guid: a8e52d46d61ed4d4eb2155c61fce044a
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      5.png
+    category: 0
+  - guid: 1bf3ac54a04b4be40996656d61d67ec3
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      12.png
+    category: 0
+  - guid: d6ef38b8cf9f50d46bfbfc772d334689
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      7.png
+    category: 0
+  - guid: 6a636cbc10b3abc42994744eaaacf0f2
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      6.png
+    category: 0
+  - guid: 69207b26a8d021d4db5f5b9df3189fc9
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      9.png
+    category: 0
+  - guid: 682d4e116a980354d8c962fccd69d098
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      10.png
+    category: 0
+  - guid: 7c351148f5e1e65458458e9ae6650ac5
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/MAtcap
+      11.png
+    category: 0
+  - guid: 63e74f12365c4254b920623f747fc634
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
+      3.png
+    category: 0
+  - guid: 31e19d9d2e585ae4d83d16d0238b472b
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 3/_MaterialPack/Block Sole
+      Heel Lofa/_TEX/Matcap 1.png
+    category: 0
+  - guid: 6373a87e8a974d44bac56682e2590735
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 3/_MaterialPack/Block Sole
+      Heel Lofa/_TEX/Matcap 2.png
+    category: 0
+  - guid: c802b9ce98ba88649a4ca60ce73e0f20
+    path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 3/_MaterialPack/Tops/_TEX/Matcap
+      2.png
+    category: 0
+  - guid: 2ed4cccf9033fdc4f99064ebda6b2077
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      5.png
+    category: 0
+  - guid: 42b9a21cf6dc56042b8f9bd999782608
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      6.png
+    category: 0
+  - guid: 1d0d93d38616dc547b8f3deaf20af19f
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      2.png
+    category: 0
+  - guid: 9bae4e589a6e0624391ed8e4c8ce6545
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      3.png
+    category: 0
+  - guid: 259bc75cee215e6468b8d52743002e29
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      4.png
+    category: 0
+  - guid: 202c970af7bebed4c87ed007866e4d52
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
+      7.png
+    category: 0
+  - guid: 081b7e4807bc82e4ab0ea17482f4d66e
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      3.png
+    category: 0
+  - guid: b05253c1637c78b44a99a4ada6631f17
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      1.png
+    category: 0
+  - guid: 0eecdbf87781b5f4f92598933ae5f613
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      6.png
+    category: 0
+  - guid: 2e0b76e4a18d7a2448d2ecb3763aad8d
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      8.png
+    category: 0
+  - guid: 8a4fc6555cb7cd94daa2e5114f197454
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      5.png
+    category: 0
+  - guid: 3c5d8fb525bb82647b0e90729973d2f9
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      4.png
+    category: 0
+  - guid: 0cf0dc5db1910624591c1ecdea480f8a
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
+      2.png
+    category: 0
+  - guid: 24f372275d56c744ebb3dbd23c87e452
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Leather Beret/MaterialPack/TEX/Matcap.png
+    category: 0
+  - guid: 6131d275dfce75749b901d6981ca1a54
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Rimless Eyewear/MaterialPack/TEX/Matcap
+      2.png
+    category: 0
+  - guid: 7ebd29f14ece71345b780d288d14b757
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Rimless Eyewear/MaterialPack/TEX/Matcap
+      1.png
+    category: 0
+  - guid: 3b9a002ae0a1fb243a36d344cf935884
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Simple Leather cap With Scarf Set/MaterialPack/TEX/Matcap
+      1.png
+    category: 0
+  - guid: 3aa8be630741a7146ac04117033204b0
+    path: Assets/MAISON DARC/MODE SCRIPTUM/Simple Leather cap With Scarf Set/MaterialPack/TEX/Matcap
+      2.png
+    category: 0
+  - guid: 518ee57f89bb1d14598fae8a56c4886a
+    path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Body/face_matcap.png
+    category: 0
+  - guid: 26818201cf493ee4f99abd6115e93ba7
+    path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Matcap/Aluminium-2-4.png
+    category: 0
+  - guid: ef15728ad04c59f42851ab75fd9ef752
+    path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Matcap/Ej-mZ67UYAAtm1T.jpg
+    category: 0
+  - guid: 9ca6b7425565cce4199159481cffeff7
+    path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/face_matcap.png
+    category: 0
+  - guid: 6e552676c77cc8742b580cd8a740d1ef
+    path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/mc_Steel_Rough.png
+    category: 0
+  - guid: 5e9389df0db450d41ab0ff49a33f67f9
+    path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/Matcap-007.png
+    category: 0
+  - guid: 07b800b5e52d2cd4db963a3f47a89c2a
+    path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/Stainless.png
+    category: 0
+  - guid: 579770f54f9ea0942bc42b89fb54df30
+    path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/E815uWXVgAA85gH.jpg
+    category: 0
+  - guid: f39e91bda6778b843b5c0446a778c4e3
+    path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/face_matcap 1.png
+    category: 0
+  - guid: 3858d91486c98ec4faff3e13cc311859
+    path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/Aluminium-2-4.png
+    category: 0
+  - guid: 3f7435302688a0a4fb832d539ed75351
+    path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/Ej-mZ67UYAAtm1T.jpg
+    category: 0
+  - guid: efaaea7f6a25a4d4fafa9fce85bf947f
+    path: Packages/com.vrchat.base/Runtime/VRCSDK/Sample Assets/Prototyping/Textures/prototype_black_dff.png
+    category: 1
+  - guid: 3cae02495b88d2d4fbf19382b7993691
+    path: Packages/com.vrchat.base/Runtime/VRCSDK/Sample Assets/Prototyping/Textures/prototype_blue_dff.png
+    category: 1
+  - guid: 86e4aa9207c9e2740b6ace599d659c05
+    path: Packages/com.vrchat.base/Runtime/VRCSDK/Sample Assets/Prototyping/Textures/SwatchNavyAlbedo.png
+    category: 1
+  - guid: 580615edf5e29d245af58fc5fe2b06ac
+    path: Packages/com.vrchat.base/Runtime/VRCSDK/Sample Assets/Prototyping/Textures/SwatchPinkDAlbedo.png
+    category: 1
+  - guid: b4646ae63b0bcca40b1bdde3b87e01bf
+    path: Packages/com.vrchat.base/Runtime/VRCSDK/Sample Assets/Prototyping/Textures/SwatchYellowAlbedo.png
+    category: 1
