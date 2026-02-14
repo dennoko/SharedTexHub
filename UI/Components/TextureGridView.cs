@@ -180,14 +180,29 @@ namespace SharedTexHub.UI.Components
                 case SortOption.Name:
                     return list.OrderBy(t => t.path);
                 case SortOption.Color:
-                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) // 1. Grayscale First
-                               .ThenByDescending(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : 0) // 2. Grayscale: Sort by Brightness
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x)) // 3. Color: Sort by Hue
-                               .ThenByDescending(t => IsGrayscale(t.mainHsv.y) ? 0 : t.mainHsv.y) // 4. Color: Sort by Saturation
-                               .ThenByDescending(t => t.mainHsv.z); // 5. All: Sort by Value
+                    return list.OrderBy(t => GetColorTier(t.mainHsv)) // Tier: 0(Gray), 1(LowSat), 2(Vivid)
+                               .ThenBy(t => GetColorTier(t.mainHsv) == 0 ? (1.0f - t.mainHsv.z) : QuantizeHue(t.mainHsv.x)) // Tier 0: Brightness(Desc), Tier 1/2: Hue
+                               .ThenByDescending(t => t.mainHsv.y) // Saturation (Desc)
+                               .ThenByDescending(t => t.mainHsv.z); // Value (Desc)
                 default:
                     return list;
             }
+        }
+
+        private int GetColorTier(Vector3 hsv)
+        {
+            float s = hsv.y;
+            float v = hsv.z;
+            
+            // Tier 0: Grayscale / Black / White
+            // Includes dark colors (v < 0.2) and low saturation (s < 0.15)
+            if (v < 0.2f || s < 0.15f) return 0;
+
+            // Tier 1: Low Saturation / Muted Colors (Metallic, Pastel)
+            if (s < 0.4f) return 1;
+
+            // Tier 2: Vivid Colors
+            return 2;
         }
 
         private void DrawTextureItem(TextureInfo info, float size)
@@ -289,10 +304,7 @@ namespace SharedTexHub.UI.Components
             GUILayout.EndVertical();
         }
 
-        private bool IsGrayscale(float saturation)
-        {
-            return saturation < 0.15f; 
-        }
+
 
         private float QuantizeHue(float hue)
         {
