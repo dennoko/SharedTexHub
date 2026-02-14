@@ -99,6 +99,11 @@ namespace SharedTexHub.UI.Components
             
             Rect rect = GUILayoutUtility.GetRect(size, size);
             
+            // Use GUILayout.Box or Label instead of Button to handle events manually
+            // Button consumes events which makes Drag detection harder if we want to avoid selection on drag
+            GUIStyle textureStyle = new GUIStyle(GUI.skin.box); // Use a box style for the texture background
+            textureStyle.alignment = TextAnchor.MiddleCenter;
+
             if (tex != null)
             {
                 // Use AssetPreview to get correct visual for Normal Maps etc.
@@ -109,13 +114,14 @@ namespace SharedTexHub.UI.Components
                     preview = AssetPreview.GetMiniThumbnail(tex);
                 }
 
+                // Draw Texture Preview
                 if (preview != null)
                 {
                     GUI.DrawTexture(rect, preview, ScaleMode.ScaleToFit);
                 }
                 else
                 {
-                    GUI.Box(rect, "Loading...");
+                    GUI.Box(rect, "Loading...", textureStyle);
                 }
                 
                 // Label
@@ -123,9 +129,26 @@ namespace SharedTexHub.UI.Components
 
                 // Events
                 Event e = Event.current;
+
                 if (rect.Contains(e.mousePosition))
                 {
-                    if (e.type == EventType.ContextClick)
+                    // Handle Click (Selection) -> MouseUp
+                    if (e.type == EventType.MouseUp && e.button == 0)
+                    {
+                        EditorGUIUtility.PingObject(tex);
+                        Selection.activeObject = tex;
+                        e.Use();
+                    }
+                    // Handle Drag & Drop -> MouseDrag
+                    else if (e.type == EventType.MouseDrag)
+                    {
+                        DragAndDrop.PrepareStartDrag();
+                        DragAndDrop.objectReferences = new Object[] { tex };
+                        DragAndDrop.StartDrag("Texture Drag");
+                        e.Use();
+                    }
+                    // Context Menu
+                    else if (e.type == EventType.ContextClick)
                     {
                         GenericMenu menu = new GenericMenu();
                         menu.AddItem(new GUIContent("Copy to Library"), false, () => 
@@ -133,21 +156,6 @@ namespace SharedTexHub.UI.Components
                             SharedTexHub.Logic.AssetManager.CopyToLibrary(info);
                         });
                         menu.ShowAsContext();
-                        e.Use();
-                    }
-                    else if (e.type == EventType.MouseDown)
-                    {
-                        // Ping
-                        EditorGUIUtility.PingObject(tex);
-                        Selection.activeObject = tex;
-                        e.Use();
-                    }
-                    else if (e.type == EventType.MouseDrag)
-                    {
-                        // Drag and Drop
-                        DragAndDrop.PrepareStartDrag();
-                        DragAndDrop.objectReferences = new Object[] { tex };
-                        DragAndDrop.StartDrag(tex.name);
                         e.Use();
                     }
                 }
@@ -171,7 +179,6 @@ namespace SharedTexHub.UI.Components
                     return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) // Grayscale first (IsGrayscale=true comes before false? No, bool sort: False then True. So !IsGrayscale for Grayscale first)
                                // Actually: OrderBy(bool) puts False first, then True.
                                // We want IsGrayscale=true to be first.
-                               // So OrderByDescending(IsGrayscale)
                                .OrderByDescending(t => IsGrayscale(t.mainHsv.y)) 
                                .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeHue(t.mainHsv.x)) // If Gray: sort by Value. Else: sort by Hue
                                .ThenBy(t => t.mainHsv.y) // Saturation
