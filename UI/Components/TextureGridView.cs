@@ -11,11 +11,17 @@ namespace SharedTexHub.UI.Components
         private Vector2 scrollPosition;
         private string searchString = "";
         private SortOption sortOption = SortOption.Color;
+        
+        // Slider Throttling
+        private float tempItemSize = 100f;
+        private double lastLayoutUpdateTime = 0;
+        private const float LAYOUT_UPDATE_INTERVAL = 0.1f;
 
         public enum SortOption
         {
             Name,
-            Color
+            Color,
+            Color_Invert
         }
         
         private float itemSize = 100f; // Default size
@@ -31,6 +37,13 @@ namespace SharedTexHub.UI.Components
 
         public void Draw(List<TextureInfo> textures, Category currentCategory)
         {
+            // Sync tempItemSize if itemSize changed externally (unlikely but safe)
+            if (Mathf.Abs(tempItemSize - itemSize) > 1f && Event.current.type == EventType.Layout)
+            {
+               // If itemSize was changed by something other than the slider (e.g. initialization), sync temp
+               // But usually temp drives itemSize.
+            }
+
             // Search Bar
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             string newSearchString = GUILayout.TextField(searchString, EditorStyles.toolbarSearchField, GUILayout.Width(200));
@@ -149,11 +162,30 @@ namespace SharedTexHub.UI.Components
 
             GUILayout.FlexibleSpace();
             GUILayout.Label("Scale:", GUILayout.Width(40));
-            float newItemSize = GUILayout.HorizontalSlider(itemSize, 50f, 200f, GUILayout.Width(100));
-            if (Mathf.Abs(newItemSize - itemSize) > 1f)
+            
+            // Throttled Slider
+            float newTempSize = GUILayout.HorizontalSlider(tempItemSize, 50f, 200f, GUILayout.Width(100));
+            if (Mathf.Abs(newTempSize - tempItemSize) > 0.01f)
             {
-                itemSize = newItemSize;
-                // Repaint will happen naturally
+                tempItemSize = newTempSize;
+                
+                // Check throttling
+                if (EditorApplication.timeSinceStartup - lastLayoutUpdateTime > LAYOUT_UPDATE_INTERVAL)
+                {
+                    itemSize = tempItemSize;
+                    lastLayoutUpdateTime = EditorApplication.timeSinceStartup;
+                    // Repaint handled by GUI change
+                }
+            }
+            
+            // Ensure final value is applied on MouseUp
+            if (Event.current.type == EventType.MouseUp)
+            {
+                 if (Mathf.Abs(itemSize - tempItemSize) > 0.1f)
+                 {
+                     itemSize = tempItemSize;
+                     lastLayoutUpdateTime = EditorApplication.timeSinceStartup;
+                 }
             }
 
             GUILayout.Space(10);
@@ -191,6 +223,11 @@ namespace SharedTexHub.UI.Components
                                .ThenBy(t => GetColorTier(t.mainHsv) == 0 ? (1.0f - t.mainHsv.z) : QuantizeHue(t.mainHsv.x)) // Tier 0: Brightness(Desc), Tier 1/2: Hue
                                .ThenByDescending(t => t.mainHsv.y) // Saturation (Desc)
                                .ThenByDescending(t => t.mainHsv.z); // Value (Desc)
+                case SortOption.Color_Invert:
+                    return list.OrderByDescending(t => GetColorTier(t.mainHsv)) // Tier Desc: Vivid -> LowSat -> Gray
+                               .ThenByDescending(t => GetColorTier(t.mainHsv) == 0 ? (1.0f - t.mainHsv.z) : QuantizeHue(t.mainHsv.x))
+                               .ThenBy(t => t.mainHsv.y) // Saturation (Asc)
+                               .ThenBy(t => t.mainHsv.z); // Value (Asc)
                 default:
                     return list;
             }
