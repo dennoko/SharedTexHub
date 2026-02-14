@@ -33,6 +33,23 @@ namespace SharedTexHub.Logic.Scanner
             // Emission 2nd
             CheckAndYield(material, "_Emission2ndMap", "_UseEmission2nd", ref output);
 
+            // Glitter
+            CheckAndYield(material, "_GlitterColorTex", "_UseGlitter", ref output);
+            if (material.HasProperty("_GlitterApplyShape") && material.GetFloat("_GlitterApplyShape") != 0)
+            {
+                CheckAndYield(material, "_GlitterShapeTex", "_UseGlitter", ref output); // Shape depends on UseGlitter too
+            }
+
+            // Outline
+            // Note: _UseOutline or _OutlineWidth > 0? For now check UseOutline or OutlineWidth in future if needed.
+            // lilToon usually has _UseOutline (property name varies in inspector vs internal? no, lts.shader has [lilToggleLeft] _UseOutline)
+            // Wait, lts.shader line 560: [lilToggleLeft] _UseOutline ("Use Outline", Int) = 0
+            // BUT, on line 540: _OutlineWidthMask is [NoScaleOffset]. _OutlineTex is NOT.
+            CheckAndYield(material, "_OutlineTex", "_UseOutline", ref output);
+
+            // Rim Color
+            CheckAndYield(material, "_RimColorTex", "_UseRim", ref output);
+
             foreach (var item in output)
             {
                 yield return item;

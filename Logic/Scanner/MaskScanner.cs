@@ -29,6 +29,19 @@ namespace SharedTexHub.Logic.Scanner
              // DissolveNoiseMask
             CheckAndYield(material, "_DissolveNoiseMask", null, ref output);
 
+            // Main 2nd Dissolve
+            CheckAndYield(material, "_Main2ndDissolveMask", "_UseMain2ndTex", ref output);
+            CheckAndYield(material, "_Main2ndDissolveNoiseMask", "_UseMain2ndTex", ref output);
+
+            // Main 3rd Dissolve
+            CheckAndYield(material, "_Main3rdDissolveMask", "_UseMain3rdTex", ref output);
+            CheckAndYield(material, "_Main3rdDissolveNoiseMask", "_UseMain3rdTex", ref output);
+
+            // MatCap Mask
+            // Note: These have [NoScaleOffset] in shader but internal _ST properties exist.
+            CheckAndYield(material, "_MatCapBlendMask", "_UseMatCap", ref output);
+            CheckAndYield(material, "_MatCap2ndBlendMask", "_UseMatCap2nd", ref output);
+
             // AlphaMask
             // _AlphaMaskMode != 0
             if (material.HasProperty("_AlphaMaskMode") && material.GetInt("_AlphaMaskMode") != 0)
