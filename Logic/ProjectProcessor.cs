@@ -31,6 +31,17 @@ namespace SharedTexHub.Logic
             DatabaseManager.Clear();
             HashGenerator.ClearCache();
             
+            // 2. Scan Manual Folders
+            foreach (Category category in System.Enum.GetValues(typeof(Category)))
+            {
+                var textures = Scanner.FolderScanner.Scan(category);
+                foreach (var t in textures)
+                {
+                    DatabaseManager.AddOrUpdate(t);
+                }
+            }
+
+            AssetDatabase.SaveAssets();
             string[] guids = AssetDatabase.FindAssets("t:Material");
             List<ITextureScanner> scanners = new List<ITextureScanner>
             {

@@ -39,9 +39,12 @@ namespace SharedTexHub.UI.Tabs
                // logic above is flawed. UpdateList logic is safer.
             }
             // Just rely on OnEnable or check null
-            if (cachedTextures == null) UpdateList();
-            
-            gridView.Draw(cachedTextures);
+            if (cachedTextures == null)
+            {
+                UpdateList();
+            }
+
+            gridView.Draw(cachedTextures, TargetCategory);
         }
 
         private void UpdateList()

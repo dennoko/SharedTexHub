@@ -13,21 +13,46 @@ MonoBehaviour:
   m_Name: SharedTexHubDatabase
   m_EditorClassIdentifier: 
   textures:
+  - guid: 0686353623e7d174f90c239240090305
+    path: Assets/SharedTexHub/Mask/Noise.png
+    category: 3
+    hash: 2affb42dc77f2dcd07a6c017e87cb247
+    colorGrid: []
+    mainHsv: {x: 0, y: 0, z: 0}
+    colorSpread: 0
   - guid: 8994c086cca28044fbeeb46600072004
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Mat.jpg"
     category: 0
     hash: 8c3974a66708740571e3b8e7799fd5b3
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.1843932, g: 0.18406773, b: 0.1843932, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.0017650931, z: 0.1843932}
+    colorSpread: 0.22222222
   - guid: 5e79de0f9d1fada43b278ace10a7ff28
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Ring/Tex/Matcap
       3.png"
     category: 0
     hash: 5d5d0ae9ab55b45c88b955b6b5c13785
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.16063543, g: 0.16012628, b: 0.16063543, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.0031695554, z: 0.16063543}
+    colorSpread: 0.18055557
   - guid: 977023464b1abf742ab218804f590537
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/!UPDATE/MIKKELSAN
       CASHMERE/TEX/CROCO B.png"
@@ -144,9 +169,18 @@ MonoBehaviour:
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/SAUVAGE matcap.png"
     category: 0
     hash: 9f7a89a69ab91ce428d7cf4c5f5ac7c9
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.07863361, g: 0.07837644, b: 0.07863513, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.83235407, y: 0.003289677, z: 0.07863513}
+    colorSpread: 0.31944445
   - guid: 3bb2f517a73b279489f0175e1d680756
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Inner + Stole/Tex/Fabric
       #2 1.png"
@@ -206,108 +240,234 @@ MonoBehaviour:
       Foil 4.png"
     category: 0
     hash: 3b14a95278f2cee0bbddd0aaf42673f6
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.8259913, g: 0.7382985, b: 0.87179124, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.7761517, y: 0.15312469, z: 0.87179124}
+    colorSpread: 0.18930238
   - guid: 3d60f06e2ef8801428c90ea64bc9f696
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
       1 C.png"
     category: 0
     hash: f2df4642d8daf3f47296c84adc01a9a3
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.41578546, g: 0.26962775, b: 0.28484276, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.98265, y: 0.35152194, z: 0.41578546}
+    colorSpread: 0.061783556
   - guid: ae01c0ee17814ee46b8c14cbac1ba6b9
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
       3.jpg"
     category: 0
     hash: 5a20870b2bb8b8aec93a95031dc7e12b
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.45550862, g: 0.3634265, b: 0.24849728, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.09253054, y: 0.45446196, z: 0.45550862}
+    colorSpread: 0.1448003
   - guid: 7e9d1f1cc6a69754080dd6b7d9c58116
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
       1 B.png"
     category: 0
     hash: d20d2ccf744edf0363c26c2c0fb0181a
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.639732, g: 0.6543113, b: 0.85835373, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.6555521, y: 0.25469887, z: 0.85835373}
+    colorSpread: 0.1401663
   - guid: f56794ac7937afc4591089c260c20c99
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
       2.jpg"
     category: 0
     hash: 098a1e2946cdd4a1e8330421502d0cad
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.70035374, g: 0.52247, b: 0.57353485, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.95215523, y: 0.25399128, z: 0.70035374}
+    colorSpread: 0.102306925
   - guid: 31e28309eff1f0a4d8178ea56248e09d
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Panel
       1.png"
     category: 0
     hash: 45ce12f7e6c5bb2d7ecbe9e36ac26bc2
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.4979141, g: 0.54059887, b: 0.75438493, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.6389281, y: 0.33997342, z: 0.75438493}
+    colorSpread: 0.0699825
   - guid: 4677bacb99f9a1c429ceb8ee36568780
     path: "Assets/BLVK/S4/L\u2019Myst\xE8re Sauvage/Styles Materials/Sunglass/Tex/Holographic
       Foil 4.png"
     category: 0
     hash: 9f96bde33771d021e3a75b370f8a759f
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.8403053, g: 0.7170263, b: 0.88128006, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.7917567, y: 0.1863809, z: 0.88128006}
+    colorSpread: 0.1380903
   - guid: 5e230a58af4f34441bb70e30747ef746
     path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat2.png
     category: 0
     hash: ae5e8efed5f4b07a70e139426f186197
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.32615042, g: 0.32568142, b: 0.32615042, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.0014379842, z: 0.32615042}
+    colorSpread: 0.055555552
   - guid: 6df4f0c16cf543a428885ddfadc7e53d
     path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat1.png
     category: 0
     hash: 5f43c8bad7d069fddcfeafccdfbcef63
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.49216935, g: 0.4920749, b: 0.49216935, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.00019189241, z: 0.49216935}
+    colorSpread: 0.25
   - guid: 26b2da03c60ce984e8cd75ec80558b21
     path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat4.png
     category: 0
     hash: cc9e35a72ffc00fc85c944a78567b2b1
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.64715105, g: 0.6502955, b: 0.64611506, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.29203025, y: 0.0064285104, z: 0.6502955}
+    colorSpread: 0.21816726
   - guid: 8d1d23acc83da7d45843794ecb8de447
     path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat3.png
     category: 0
     hash: f37125463453ba6c5c35049e17b18892
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.9597782, g: 0.93614596, b: 0.94663393, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.9260334, y: 0.024622593, z: 0.9597782}
+    colorSpread: 0.06030975
   - guid: db9775d6924849345bba0e5f85097684
     path: Assets/KeenooSHOP/Lasyusha/Textures/99_subtex/LA_mat5.png
     category: 0
     hash: 0b7a75ef04106aa347bda3bdc45f4c68
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.4989492, g: 0.49920267, b: 0.4989492, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.33333334, y: 0.0005077472, z: 0.49920267}
+    colorSpread: 0.08333333
   - guid: 28df4b798f65dda49a7807765f6073a0
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Block Sole
       Lofa/_TEX/Matcap 1.png
     category: 0
     hash: 71c04e491319dc03ea8b2021ab43fe99
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.123011194, g: 0.12035929, b: 0.11988657, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.025214603, y: 0.02540114, z: 0.123011194}
+    colorSpread: 0.138445
   - guid: cbf9ddadf39a24046a1a45e0b6e43985
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Block Sole
       Lofa/_TEX/Matcap 2.png
     category: 0
     hash: 3436cd1247b8259399d3bc3ce2ad4603
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.11112151, g: 0.1112311, b: 0.11112151, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.33333334, y: 0.0009852513, z: 0.1112311}
+    colorSpread: 0.09722222
   - guid: b52b4bf3ec3b027409478b84ebbeaa81
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 1/_MaterialPack/Jacket/_TEX/Matcap
       1.png
@@ -345,9 +505,18 @@ MonoBehaviour:
       4.png
     category: 0
     hash: 07aaed4284d9578c103e7deda6182484
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.764837, g: 0.7558444, b: 0.80462927, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.69738865, y: 0.060630225, z: 0.80462927}
+    colorSpread: 0.1646502
   - guid: 43ff5d6ef134af24e88fc663c2c1da00
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       2.png
@@ -361,73 +530,154 @@ MonoBehaviour:
       8.png
     category: 0
     hash: 78bdce9571dac0cc07edfdfdde9196f4
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.57886606, g: 0.6110895, b: 0.7469327, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.6347116, y: 0.22500905, z: 0.7469327}
+    colorSpread: 0.15691616
   - guid: a8e52d46d61ed4d4eb2155c61fce044a
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       5.png
     category: 0
     hash: b4872fbb58fe05fe64326a0504ed24a5
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.68691593, g: 0.68606234, b: 0.729946, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.6699085, y: 0.060119078, z: 0.729946}
+    colorSpread: 0.17511417
   - guid: 1bf3ac54a04b4be40996656d61d67ec3
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       12.png
     category: 0
     hash: c11134c690f82942f8e47cab68d4d780
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.8114489, g: 0.5484807, b: 0.5829865, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.9781306, y: 0.3240724, z: 0.8114489}
+    colorSpread: 0.0035556506
   - guid: d6ef38b8cf9f50d46bfbfc772d334689
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       7.png
     category: 0
     hash: 77f366294bcca6520acb334d89721eff
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.5759641, g: 0.53795654, b: 0.696633, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.7065881, y: 0.22777624, z: 0.696633}
+    colorSpread: 0.067903824
   - guid: 6a636cbc10b3abc42994744eaaacf0f2
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       6.png
     category: 0
     hash: c19e138daac464921be9c149a186f55d
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.5186547, g: 0.5097346, b: 0.53272694, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.73132676, y: 0.04315977, z: 0.53272694}
+    colorSpread: 0.15299791
   - guid: 69207b26a8d021d4db5f5b9df3189fc9
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       9.png
     category: 0
     hash: 351839bc787e8a4f5e24e123bc90e558
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.3990207, g: 0.39885548, b: 0.39741576, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.14950885, y: 0.0040222085, z: 0.3990207}
+    colorSpread: 0.19411217
   - guid: 682d4e116a980354d8c962fccd69d098
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       10.png
     category: 0
     hash: 8458c91ef213c7b4864d87ebbefdf003
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.34710482, g: 0.4626728, b: 0.57572937, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.5824179, y: 0.3971042, z: 0.57572937}
+    colorSpread: 0.07017103
   - guid: 7c351148f5e1e65458458e9ae6650ac5
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/MAtcap
       11.png
     category: 0
     hash: 75344e3d6e62edcb358e672ba6292178
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.37875903, g: 0.41788062, b: 0.49810532, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.6120335, y: 0.23960051, z: 0.49810532}
+    colorSpread: 0.0633854
   - guid: 63e74f12365c4254b920623f747fc634
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 2/_MaterialPack/Puff Jacket/_TEX/Matcap
       3.png
     category: 0
     hash: 5c317f2f9e556d7766c7d731e2b6cacc
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.6937798, g: 0.69396406, b: 0.6906646, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.1759731, y: 0.0047545326, z: 0.69396406}
+    colorSpread: 0.19685781
   - guid: 31e19d9d2e585ae4d83d16d0238b472b
     path: Assets/MAISON DARC/MODE SCRIPTUM/_Femme/_LOOK 3/_MaterialPack/Block Sole
       Heel Lofa/_TEX/Matcap 1.png
@@ -473,73 +723,154 @@ MonoBehaviour:
       2.png
     category: 0
     hash: 50219eebf47079662b1808bbf1a06bc8
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.44939217, g: 0.45173132, b: 0.43754724, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.19415234, y: 0.031399388, z: 0.45173132}
+    colorSpread: 0.21636881
   - guid: 9bae4e589a6e0624391ed8e4c8ce6545
     path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
       3.png
     category: 0
     hash: d1ab3cebfff9be8c1e44a30f9822172c
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.5682621, g: 0.5730662, b: 0.73233896, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.66178674, y: 0.22404498, z: 0.73233896}
+    colorSpread: 0.13758859
   - guid: 259bc75cee215e6468b8d52743002e29
     path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
       4.png
     category: 0
     hash: 32f31c4559f9e7c405de75e2f9402648
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.3606567, g: 0.30223066, b: 0.3322844, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.91426843, y: 0.16199908, z: 0.3606567}
+    colorSpread: 0.17462647
   - guid: 202c970af7bebed4c87ed007866e4d52
     path: Assets/MAISON DARC/MODE SCRIPTUM/Decorate Headphone/MaterialPack/TEX/Matcap
       7.png
     category: 0
     hash: f8e453a92f175a9f4e4ccb8ce61fe70d
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.6877543, g: 0.68891746, b: 0.6821738, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.19541425, y: 0.009788792, z: 0.68891746}
+    colorSpread: 0.089713715
   - guid: 081b7e4807bc82e4ab0ea17482f4d66e
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       3.png
     category: 0
     hash: 4aa640a61082e7cb2abed5029dbe0b78
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.51576126, g: 0.5001147, b: 0.4950475, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.04077139, y: 0.0401615, z: 0.51576126}
+    colorSpread: 0.19349541
   - guid: b05253c1637c78b44a99a4ada6631f17
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       1.png
     category: 0
     hash: 0e5a21289c0bf81887d0647d6e275a26
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.244327, g: 0.24389055, b: 0.24434958, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8251312, y: 0.0018785801, z: 0.24434958}
+    colorSpread: 0.16940069
   - guid: 0eecdbf87781b5f4f92598933ae5f613
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       6.png
     category: 0
     hash: 3049b1f19e7cf5f97980e69787053ab5
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.33480695, g: 0.2768293, b: 0.326758, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8564714, y: 0.1731674, z: 0.33480695}
+    colorSpread: 0.085187025
   - guid: 2e0b76e4a18d7a2448d2ecb3763aad8d
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       8.png
     category: 0
     hash: b595e00695179585ca3de0d5a768f864
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.21146344, g: 0.16160464, b: 0.20543127, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8534975, y: 0.23577973, z: 0.21146344}
+    colorSpread: 0.052786287
   - guid: 8a4fc6555cb7cd94daa2e5114f197454
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       5.png
     category: 0
     hash: 2f31e1b662f606a3394a8d5d0ed96296
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.47455916, g: 0.43474546, b: 0.4296752, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.018827321, y: 0.09458034, z: 0.47455916}
+    colorSpread: 0.081937686
   - guid: 3c5d8fb525bb82647b0e90729973d2f9
     path: Assets/MAISON DARC/MODE SCRIPTUM/Iconic Leather Bag/MaterialPack/_TEX/Matcap
       4.png
@@ -553,9 +884,18 @@ MonoBehaviour:
       2.png
     category: 0
     hash: 9d0934b7c73a883d9b395ef99ac7cac9
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.18731824, g: 0.18671708, b: 0.18731824, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.0032092847, z: 0.18731824}
+    colorSpread: 0.27777776
   - guid: 24f372275d56c744ebb3dbd23c87e452
     path: Assets/MAISON DARC/MODE SCRIPTUM/Leather Beret/MaterialPack/TEX/Matcap.png
     category: 0
@@ -568,17 +908,35 @@ MonoBehaviour:
       2.png
     category: 0
     hash: cd42336af1efb0c26ae4fa7d98e98df7
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.46615726, g: 0.4400325, b: 0.40764448, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.09225345, y: 0.12552154, z: 0.46615726}
+    colorSpread: 0.03598882
   - guid: 7ebd29f14ece71345b780d288d14b757
     path: Assets/MAISON DARC/MODE SCRIPTUM/Rimless Eyewear/MaterialPack/TEX/Matcap
       1.png
     category: 0
     hash: dd2df801b0a5548e170b1a1ba4d212c7
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.26110002, g: 0.260233, b: 0.25939304, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.08201372, y: 0.006537677, z: 0.26110002}
+    colorSpread: 0.18182802
   - guid: 3b9a002ae0a1fb243a36d344cf935884
     path: Assets/MAISON DARC/MODE SCRIPTUM/Simple Leather cap With Scarf Set/MaterialPack/TEX/Matcap
       1.png
@@ -599,58 +957,130 @@ MonoBehaviour:
     path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Body/face_matcap.png
     category: 0
     hash: 21f86ae61e5c0859f037163041a4d8ec
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.15112416, g: 0.137195, b: 0.12944156, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.05959806, y: 0.14347543, z: 0.15112416}
+    colorSpread: 0.043184783
   - guid: 26818201cf493ee4f99abd6115e93ba7
     path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Matcap/Aluminium-2-4.png
     category: 0
     hash: ecc2b2791a0444317ed9dcb2857a0d30
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.5386402, g: 0.54009354, b: 0.5421498, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.5976489, y: 0.006473453, z: 0.5421498}
+    colorSpread: 0.23595089
   - guid: ef15728ad04c59f42851ab75fd9ef752
     path: Assets/TinmeshiTei/Avatar/Iyori/Model/Texture/Matcap/Ej-mZ67UYAAtm1T.jpg
     category: 0
     hash: fc05606408da7f7b534616bf8a495435
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.1503174, g: 0.14366208, b: 0.16631746, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.7156272, y: 0.1362177, z: 0.16631746}
+    colorSpread: 0.07251603
   - guid: 9ca6b7425565cce4199159481cffeff7
     path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/face_matcap.png
     category: 0
     hash: e6fd724b8bbfd7097fc6d122e205616b
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.15199627, g: 0.13843611, b: 0.13105538, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.058742534, y: 0.13777237, z: 0.15199627}
+    colorSpread: 0.036381785
   - guid: 6e552676c77cc8742b580cd8a740d1ef
     path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/mc_Steel_Rough.png
     category: 0
     hash: fc63799eea27d5f6fddf4deb432b6ca4
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.37532866, g: 0.37467822, b: 0.37517196, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.87348604, y: 0.0017329763, z: 0.37532866}
+    colorSpread: 0.1172986
   - guid: 5e9389df0db450d41ab0ff49a33f67f9
     path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/Matcap-007.png
     category: 0
     hash: 4c1ac57f1a52a24c48da6c412343bba1
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.13479151, g: 0.13483702, b: 0.13479151, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.33333334, y: 0.00033750484, z: 0.13483702}
+    colorSpread: 0.31944442
   - guid: 07b800b5e52d2cd4db963a3f47a89c2a
     path: Assets/TinmeshiTei/Avatar/Romad_V3/Materials/Texture/Matcap/Stainless.png
     category: 0
     hash: 24e8920e87838fd13d6fb58a048c7562
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.37834567, g: 0.37887087, b: 0.37839127, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.3478031, y: 0.0013862409, z: 0.37887087}
+    colorSpread: 0.27777776
   - guid: 579770f54f9ea0942bc42b89fb54df30
     path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/E815uWXVgAA85gH.jpg
     category: 0
     hash: 72445c0ebaa448e67d554fcc3511c14f
-    colorGrid: []
-    mainHsv: {x: 0, y: 0, z: 0}
-    colorSpread: 0
+    colorGrid:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0.1266494, g: 0.12587792, b: 0.1266494, a: 1}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    mainHsv: {x: 0.8333333, y: 0.0060914448, z: 0.1266494}
+    colorSpread: 0.19444443
   - guid: f39e91bda6778b843b5c0446a778c4e3
     path: Assets/TinmeshiTei/Avatar/Zev/Material/Texture/MatCap/face_matcap 1.png
     category: 0

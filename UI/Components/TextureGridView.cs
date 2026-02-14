@@ -21,7 +21,7 @@ namespace SharedTexHub.UI.Components
         
         private float itemSize = 100f; // Default size
 
-        public void Draw(List<TextureInfo> textures)
+        public void Draw(List<TextureInfo> textures, Category currentCategory)
         {
             // Search Bar
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
@@ -46,8 +46,8 @@ namespace SharedTexHub.UI.Components
 
             if (filtered.Count == 0)
             {
-                GUILayout.Label("No textures found.");
-                return;
+                // GUILayout.Label("No textures found.");
+                // Let's continue to draw footer even if empty, so user can open folder
             }
 
             // Web-style Grid
@@ -63,26 +63,33 @@ namespace SharedTexHub.UI.Components
             GUIStyle paddingStyle = new GUIStyle();
             paddingStyle.padding = new RectOffset((int)padding, (int)padding, (int)padding, (int)padding);
             GUILayout.BeginVertical(paddingStyle);
-            
-            for (int i = 0; i < filtered.Count; i += columns)
+
+            if (filtered.Count > 0)
             {
-                GUILayout.BeginHorizontal();
-                for (int j = 0; j < columns; j++)
+                for (int i = 0; i < filtered.Count; i += columns)
                 {
-                    int index = i + j;
-                    if (index >= filtered.Count)
+                    GUILayout.BeginHorizontal();
+                    for (int j = 0; j < columns; j++)
                     {
-                         GUILayout.Label("", GUILayout.Width(itemSize)); // Spacer
-                         continue;
+                        int index = i + j;
+                        if (index >= filtered.Count)
+                        {
+                             GUILayout.Label("", GUILayout.Width(itemSize)); // Spacer
+                             continue;
+                        }
+                        
+                        var info = filtered[index];
+                        DrawTextureItem(info, itemSize);
+                        
+                        if (j < columns - 1) GUILayout.Space(spacing);
                     }
-                    
-                    var info = filtered[index];
-                    DrawTextureItem(info, itemSize);
-                    
-                    if (j < columns - 1) GUILayout.Space(spacing);
+                    GUILayout.EndHorizontal();
+                    GUILayout.Space(spacing);
                 }
-                GUILayout.EndHorizontal();
-                GUILayout.Space(spacing);
+            }
+            else
+            {
+                GUILayout.Label("No textures found.");
             }
             
             GUILayout.EndVertical();
@@ -90,6 +97,13 @@ namespace SharedTexHub.UI.Components
 
             // Footer with Scale Slider
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
+            
+            // Open Folder Button
+            if (GUILayout.Button("Open Folder", EditorStyles.toolbarButton, GUILayout.Width(80)))
+            {
+                SharedTexHub.Logic.DirectoryManager.OpenCategoryFolder(currentCategory);
+            }
+
             GUILayout.FlexibleSpace();
             GUILayout.Label("Scale:", GUILayout.Width(40));
             itemSize = GUILayout.HorizontalSlider(itemSize, 50f, 200f, GUILayout.Width(100));
@@ -139,35 +153,60 @@ namespace SharedTexHub.UI.Components
 
                 // Events
                 Event e = Event.current;
+                int controlID = GUIUtility.GetControlID(FocusType.Passive);
 
-                if (rect.Contains(e.mousePosition))
+                switch (e.type)
                 {
-                    // Handle Click (Selection) -> MouseUp
-                    if (e.type == EventType.MouseUp && e.button == 0)
-                    {
-                        EditorGUIUtility.PingObject(tex);
-                        Selection.activeObject = tex;
-                        e.Use();
-                    }
-                    // Handle Drag & Drop -> MouseDrag
-                    else if (e.type == EventType.MouseDrag)
-                    {
-                        DragAndDrop.PrepareStartDrag();
-                        DragAndDrop.objectReferences = new Object[] { tex };
-                        DragAndDrop.StartDrag("Texture Drag");
-                        e.Use();
-                    }
-                    // Context Menu
-                    else if (e.type == EventType.ContextClick)
-                    {
-                        GenericMenu menu = new GenericMenu();
-                        menu.AddItem(new GUIContent("Copy to Library"), false, () => 
+                    case EventType.MouseDown:
+                        if (rect.Contains(e.mousePosition) && e.button == 0)
                         {
-                            SharedTexHub.Logic.AssetManager.CopyToLibrary(info);
-                        });
-                        menu.ShowAsContext();
-                        e.Use();
-                    }
+                            GUIUtility.hotControl = controlID;
+                            e.Use();
+                        }
+                        break;
+
+                    case EventType.MouseUp:
+                        if (GUIUtility.hotControl == controlID && e.button == 0)
+                        {
+                            GUIUtility.hotControl = 0; // Release control
+                            
+                            // Check if still over rect? 
+                            // Usually for click, yes. But let's allow "mouse up anywhere" to cancel?
+                            // No, standard button behavior requires mouse up inside rect.
+                            if (rect.Contains(e.mousePosition))
+                            {
+                                EditorGUIUtility.PingObject(tex);
+                                Selection.activeObject = tex;
+                            }
+                            e.Use();
+                        }
+                        break;
+
+                    case EventType.MouseDrag:
+                        if (GUIUtility.hotControl == controlID)
+                        {
+                            DragAndDrop.PrepareStartDrag();
+                            DragAndDrop.objectReferences = new Object[] { tex };
+                            DragAndDrop.StartDrag("Texture Drag");
+                            
+                            // Reset hotControl because DragAndDrop takes over
+                            GUIUtility.hotControl = 0; 
+                            e.Use();
+                        }
+                        break;
+
+                    case EventType.ContextClick:
+                         if (rect.Contains(e.mousePosition))
+                         {
+                            GenericMenu menu = new GenericMenu();
+                            menu.AddItem(new GUIContent("Copy to Library"), false, () => 
+                            {
+                                SharedTexHub.Logic.AssetManager.CopyToLibrary(info);
+                            });
+                            menu.ShowAsContext();
+                            e.Use();
+                         }
+                         break;
                 }
             }
             else
