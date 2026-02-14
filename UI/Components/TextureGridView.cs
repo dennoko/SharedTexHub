@@ -21,71 +21,109 @@ namespace SharedTexHub.UI.Components
         
         private float itemSize = 100f; // Default size
 
+        // Cache for filtered and sorted list
+        private List<TextureInfo> cachedList = null;
+        private List<TextureInfo> lastSourceList = null; // Track reference
+        private string lastSearchString = "";
+        private SortOption lastSortOption = SortOption.Name;
+        private int lastRawListCount = -1;
+
         public void Draw(List<TextureInfo> textures, Category currentCategory)
         {
             // Search Bar
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
-            searchString = GUILayout.TextField(searchString, EditorStyles.toolbarSearchField, GUILayout.Width(200));
+            string newSearchString = GUILayout.TextField(searchString, EditorStyles.toolbarSearchField, GUILayout.Width(200));
+            if (newSearchString != searchString)
+            {
+                searchString = newSearchString;
+                cachedList = null; // Invalidate cache
+            }
             GUILayout.FlexibleSpace();
             
             // Sort Option
             GUILayout.Label("Sort by:", GUILayout.Width(50));
-            sortOption = (SortOption)EditorGUILayout.EnumPopup(sortOption, GUILayout.Width(100));
+            SortOption newSortOption = (SortOption)EditorGUILayout.EnumPopup(sortOption, GUILayout.Width(100));
+            if (newSortOption != sortOption)
+            {
+                sortOption = newSortOption;
+                cachedList = null; // Invalidate cache
+            }
 
             GUILayout.EndHorizontal();
 
-            // Filter
-            List<TextureInfo> filtered = textures;
-            if (!string.IsNullOrEmpty(searchString))
+            // Refresh cache if needed
+            // Check reference equality first (fastest), then count
+            if (cachedList == null || textures != lastSourceList || textures.Count != lastRawListCount)
             {
-                filtered = textures.Where(t => t.path.IndexOf(searchString, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+                UpdateCache(textures);
             }
 
-            // Sort
-            filtered = SortTextures(filtered);
-
-            if (filtered.Count == 0)
+            if (cachedList.Count == 0)
             {
-                // GUILayout.Label("No textures found.");
-                // Let's continue to draw footer even if empty, so user can open folder
+                 // Draw footer even if empty
             }
 
             // Web-style Grid
             float windowWidth = EditorGUIUtility.currentViewWidth;
             float padding = 10f;
-            // float itemSize = 100f; // Removed local declaration
             float spacing = 5f;
+            float itemHeight = itemSize + 20f;
             int columns = Mathf.Max(1, (int)((windowWidth - padding * 2) / (itemSize + spacing)));
             
             scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             
-            // Fix: Create a style with padding
             GUIStyle paddingStyle = new GUIStyle();
             paddingStyle.padding = new RectOffset((int)padding, (int)padding, (int)padding, (int)padding);
             GUILayout.BeginVertical(paddingStyle);
 
-            if (filtered.Count > 0)
+            if (cachedList.Count > 0)
             {
-                for (int i = 0; i < filtered.Count; i += columns)
+                int totalRows = Mathf.CeilToInt((float)cachedList.Count / columns);
+                float totalHeight = totalRows * (itemHeight + spacing);
+
+                // Virtualization Logic
+                // Approximate view height (can use fixed value or calculate)
+                // Since we are inside a ScrollView, we can use scrollPosition to determine visible range.
+                // Assuming standard window height approx 800, let's buffer a bit.
+                // Better: Use GUILayoutUtility.GetLastRect() from previous frame? Or just Screen.height
+                float viewHeight = Screen.height; 
+                
+                int firstVisibleRow = Mathf.FloorToInt(scrollPosition.y / (itemHeight + spacing));
+                int visibleRowCount = Mathf.CeilToInt(viewHeight / (itemHeight + spacing)) + 2; // Buffer
+                
+                firstVisibleRow = Mathf.Max(0, firstVisibleRow);
+                int lastVisibleRow = Mathf.Min(totalRows - 1, firstVisibleRow + visibleRowCount);
+
+                // Top Spacer
+                float topSpaceHeight = firstVisibleRow * (itemHeight + spacing);
+                if (topSpaceHeight > 0) GUILayout.Space(topSpaceHeight);
+
+                // Draw Visible Rows
+                for (int row = firstVisibleRow; row <= lastVisibleRow; row++)
                 {
                     GUILayout.BeginHorizontal();
-                    for (int j = 0; j < columns; j++)
+                    for (int col = 0; col < columns; col++)
                     {
-                        int index = i + j;
-                        if (index >= filtered.Count)
+                        int index = row * columns + col;
+                        if (index >= cachedList.Count)
                         {
                              GUILayout.Label("", GUILayout.Width(itemSize)); // Spacer
                              continue;
                         }
                         
-                        var info = filtered[index];
+                        var info = cachedList[index];
                         DrawTextureItem(info, itemSize);
                         
-                        if (j < columns - 1) GUILayout.Space(spacing);
+                        if (col < columns - 1) GUILayout.Space(spacing);
                     }
                     GUILayout.EndHorizontal();
                     GUILayout.Space(spacing);
                 }
+
+                // Bottom Spacer
+                int remainingRows = totalRows - 1 - lastVisibleRow;
+                float bottomSpaceHeight = remainingRows * (itemHeight + spacing);
+                if (bottomSpaceHeight > 0) GUILayout.Space(bottomSpaceHeight);
             }
             else
             {
@@ -106,25 +144,65 @@ namespace SharedTexHub.UI.Components
 
             GUILayout.FlexibleSpace();
             GUILayout.Label("Scale:", GUILayout.Width(40));
-            itemSize = GUILayout.HorizontalSlider(itemSize, 50f, 200f, GUILayout.Width(100));
+            float newItemSize = GUILayout.HorizontalSlider(itemSize, 50f, 200f, GUILayout.Width(100));
+            if (Mathf.Abs(newItemSize - itemSize) > 1f)
+            {
+                itemSize = newItemSize;
+                // Repaint will happen naturally
+            }
+
             GUILayout.Space(10);
             GUILayout.EndHorizontal();
+        }
+
+        private void UpdateCache(List<TextureInfo> sourceList)
+        {
+            // Filter
+            IEnumerable<TextureInfo> filtered = sourceList;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                filtered = sourceList.Where(t => t.path.IndexOf(searchString, System.StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Sort
+            filtered = SortTextures(filtered);
+            
+            cachedList = filtered.ToList();
+            lastSearchString = searchString;
+            lastSortOption = sortOption;
+            lastSourceList = sourceList;
+            lastRawListCount = sourceList.Count;
+        }
+
+        private IEnumerable<TextureInfo> SortTextures(IEnumerable<TextureInfo> list)
+        {
+            switch (sortOption)
+            {
+                case SortOption.Name:
+                    return list.OrderBy(t => t.path);
+                case SortOption.Color:
+                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) 
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeHue(t.mainHsv.x)) 
+                               .ThenBy(t => t.mainHsv.y) 
+                               .ThenBy(t => t.mainHsv.z);
+                case SortOption.ColorSpread:
+                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y))
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeSpread(t.colorSpread, 10)) 
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x));
+                default:
+                    return list;
+            }
         }
 
         private void DrawTextureItem(TextureInfo info, float size)
         {
             // Get Texture (cached preview)
-            // AssetDatabase.LoadAssetAtPath is reasonably fast for Editor usage?
-            // If it's slow, we might need a separate cache.
-            // But Texture itself is an asset.
             Texture tex = AssetDatabase.LoadAssetAtPath<Texture>(info.path);
             
             GUILayout.BeginVertical(GUILayout.Width(size), GUILayout.Height(size + 20));
             
             Rect rect = GUILayoutUtility.GetRect(size, size);
             
-            // Use GUILayout.Box or Label instead of Button to handle events manually
-            // Button consumes events which makes Drag detection harder if we want to avoid selection on drag
             GUIStyle textureStyle = new GUIStyle(GUI.skin.box); // Use a box style for the texture background
             textureStyle.alignment = TextAnchor.MiddleCenter;
 
@@ -170,9 +248,6 @@ namespace SharedTexHub.UI.Components
                         {
                             GUIUtility.hotControl = 0; // Release control
                             
-                            // Check if still over rect? 
-                            // Usually for click, yes. But let's allow "mouse up anywhere" to cancel?
-                            // No, standard button behavior requires mouse up inside rect.
                             if (rect.Contains(e.mousePosition))
                             {
                                 EditorGUIUtility.PingObject(tex);
@@ -189,7 +264,6 @@ namespace SharedTexHub.UI.Components
                             DragAndDrop.objectReferences = new Object[] { tex };
                             DragAndDrop.StartDrag("Texture Drag");
                             
-                            // Reset hotControl because DragAndDrop takes over
                             GUIUtility.hotControl = 0; 
                             e.Use();
                         }
@@ -218,41 +292,12 @@ namespace SharedTexHub.UI.Components
             
             GUILayout.EndVertical();
         }
-        private List<TextureInfo> SortTextures(List<TextureInfo> list)
-        {
-            switch (sortOption)
-            {
-                case SortOption.Name:
-                    return list.OrderBy(t => t.path).ToList();
-                case SortOption.Color:
-                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) // Grayscale first (IsGrayscale=true comes before false? No, bool sort: False then True. So !IsGrayscale for Grayscale first)
-                               // Actually: OrderBy(bool) puts False first, then True.
-                               // We want IsGrayscale=true to be first.
-                               .OrderByDescending(t => IsGrayscale(t.mainHsv.y)) 
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeHue(t.mainHsv.x)) // If Gray: sort by Value. Else: sort by Hue
-                               .ThenBy(t => t.mainHsv.y) // Saturation
-                               .ThenBy(t => t.mainHsv.z) // Value
-                               .ToList();
-                case SortOption.ColorSpread:
-                    // 1. Grayscale Check
-                    // 2. Quantized Spread (10 steps)
-                    // 3. Quantized Hue
-                    return list.OrderByDescending(t => IsGrayscale(t.mainHsv.y))
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeSpread(t.colorSpread, 10)) // If Gray: sort by Value. Else: sort by Spread
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x)) // If Gray: ignore Hue. Else: sort by Hue
-                               .ToList();
-                default:
-                    return list;
-            }
-        }
 
         private bool IsGrayscale(float saturation)
         {
-            return saturation < 0.15f; // Threshold for grayscale
+            return saturation < 0.15f; 
         }
 
-        // Quantize hue to reduce fine-grained sorting noise
-        // Hue is 0-1. Let's make 24 steps (every 15 degrees)
         private float QuantizeHue(float hue)
         {
             int steps = 24;
@@ -261,9 +306,6 @@ namespace SharedTexHub.UI.Components
 
         private float QuantizeSpread(float spread, int steps)
         {
-            // Spread is now Hue distance (0.0 to 0.5)
-            // Max possible distance in Hue circle is 0.5
-            
             float maxSpread = 0.5f;
             float normalized = Mathf.Clamp01(spread / maxSpread);
             

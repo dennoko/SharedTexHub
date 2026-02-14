@@ -50,11 +50,12 @@ namespace SharedTexHub.UI
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             selectedTab = GUILayout.Toolbar(selectedTab, tabNames, EditorStyles.toolbarButton);
             
+
             // Force Scan Button
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(60)))
             {
-                Logic.ProjectProcessor.FullScan();
+                Logic.ScannerManager.StartFullScan();
             }
             GUILayout.EndHorizontal();
 
