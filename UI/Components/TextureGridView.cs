@@ -180,9 +180,11 @@ namespace SharedTexHub.UI.Components
                 case SortOption.Name:
                     return list.OrderBy(t => t.path);
                 case SortOption.Color:
-                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y))
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeSpread(t.colorSpread, 10)) 
-                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x));
+                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) // 1. Grayscale First
+                               .ThenByDescending(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : 0) // 2. Grayscale: Sort by Brightness
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x)) // 3. Color: Sort by Hue
+                               .ThenByDescending(t => IsGrayscale(t.mainHsv.y) ? 0 : t.mainHsv.y) // 4. Color: Sort by Saturation
+                               .ThenByDescending(t => t.mainHsv.z); // 5. All: Sort by Value
                 default:
                     return list;
             }
@@ -300,6 +302,7 @@ namespace SharedTexHub.UI.Components
 
         private float QuantizeSpread(float spread, int steps)
         {
+            // Deprecated logic, but kept for compilation safety just in case
             float maxSpread = 0.5f;
             float normalized = Mathf.Clamp01(spread / maxSpread);
             

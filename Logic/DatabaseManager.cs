@@ -52,22 +52,53 @@ namespace SharedTexHub.Logic
 
         public static void AddOrUpdate(TextureInfo info)
         {
-            // Avoid duplicates based on GUID and Category
-            if (!Database.textures.Any(t => t.guid == info.guid && t.category == info.category))
+            if (string.IsNullOrEmpty(info.path) || !File.Exists(info.path)) return;
+
+            long currentTicks = File.GetLastWriteTime(info.path).Ticks;
+            var existing = Database.textures.FirstOrDefault(t => t.guid == info.guid && t.category == info.category);
+
+            if (existing != null)
             {
-                // Compute Hash if needed
+                // Update existing if modified
+                if (existing.lastWriteTime != currentTicks)
+                {
+                    existing.path = info.path;
+                    existing.hash = HashGenerator.GetHash(info.path);
+                    ColorAnalyzer.Analyze(existing);
+                    existing.lastWriteTime = currentTicks;
+                    // Debug.Log($"[SharedTexHub] Updated: {info.path}");
+                }
+                else
+                {
+                    // Just update path if moved, but skip heavy analysis
+                    existing.path = info.path; 
+                }
+            }
+            else
+            {
+                // New entry
+                info.lastWriteTime = currentTicks;
                 if (string.IsNullOrEmpty(info.hash))
                 {
                     info.hash = HashGenerator.GetHash(info.path);
                 }
-
-                // Analyze Color if needed
+                
                 if (info.colorGrid == null || info.colorGrid.Length == 0)
                 {
                     ColorAnalyzer.Analyze(info);
                 }
 
                 Database.Add(info);
+                // Debug.Log($"[SharedTexHub] Added: {info.path}");
+            }
+        }
+
+        public static void CleanupExcept(System.Collections.Generic.HashSet<(string guid, Category category)> validItems)
+        {
+            int removedCount = Database.textures.RemoveAll(t => !validItems.Contains((t.guid, t.category)));
+            if (removedCount > 0)
+            {
+                Debug.Log($"[SharedTexHub] Removed {removedCount} obsolete items.");
             }
         }
     }

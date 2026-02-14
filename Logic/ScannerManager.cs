@@ -70,22 +70,22 @@ namespace SharedTexHub.Logic
         private static IEnumerator<float> RunFullScan()
         {
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            HashSet<(string, Category)> visitedItems = new HashSet<(string, Category)>();
             
             // Initialization
-            DatabaseManager.Clear();
+            // DatabaseManager.Clear(); // REMOVED for incremental scan
             HashGenerator.ClearCache();
             
             yield return 0.05f;
 
             // 1. Scan Manual Folders
-            // Manual folders are usually few, we can do them in one validation or small batches if needed.
-            // For now, let's just do them.
             foreach (Category category in System.Enum.GetValues(typeof(Category)))
             {
                 var textures = FolderScanner.Scan(category);
                 foreach (var t in textures)
                 {
                     DatabaseManager.AddOrUpdate(t);
+                    visitedItems.Add((t.guid, t.category));
                 }
             }
 
@@ -130,6 +130,7 @@ namespace SharedTexHub.Logic
                     foreach (var info in scanner.Scan(mat))
                     {
                         DatabaseManager.AddOrUpdate(info);
+                        visitedItems.Add((info.guid, info.category));
                     }
                 }
             }
@@ -137,6 +138,7 @@ namespace SharedTexHub.Logic
             stopwatch.Stop();
             
             // Finalize
+            DatabaseManager.CleanupExcept(visitedItems);
             DatabaseManager.Save();
             
             yield return 1.0f;
