@@ -75,13 +75,27 @@ namespace SharedTexHub.Logic
                 if (subColors.Count > 0)
                 {
                     float totalDist = 0;
+                    // Get MainHue
+                    // Note: Main Color is already computed, but variables mHue/mSat/mVal are already defined in outer scope
+                    // We can reuse them or use new names. Let's just reassign since they are out variables.
+                    // Actually, they were defined in line 42 "float mHue...".
+                    // Here we are inside the same method.
+                    // Let's use different names for safety or just use the values from info.mainHsv directly.
+                    
+                    float mainHue = info.mainHsv.x;
+
                     foreach (var c in subColors)
                     {
-                         // Distance in RGB space
-                         float dr = c.r - mainColor.r;
-                         float dg = c.g - mainColor.g;
-                         float db = c.b - mainColor.b;
-                         totalDist += Mathf.Sqrt(dr * dr + dg * dg + db * db);
+                         // Distance in Hue space (0-1 circular)
+                         Color.RGBToHSV(c, out float cHue, out float cSat, out float cVal);
+                         
+                         // Calculate shortest angular distance
+                         float diff = Mathf.Abs(cHue - mainHue);
+                         if (diff > 0.5f) diff = 1.0f - diff;
+                         
+                         // We only care about Hue difference, so ignore Sat/Val differences
+                         // effectively treating "Dark Blue" and "Light Blue" as same color (distance 0)
+                         totalDist += diff;
                     }
                     info.colorSpread = totalDist / subColors.Count;
                 }

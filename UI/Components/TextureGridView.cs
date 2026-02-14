@@ -205,13 +205,10 @@ namespace SharedTexHub.UI.Components
 
         private float QuantizeSpread(float spread, int steps)
         {
-            // Spread is arbitrary value, but likely 0-1 range if normalized?
-            // ColorAnalyzer uses RGB distance sum / count. Max distance in RGB (0-1) is sqrt(3) ~= 1.732
-            // So spread is roughly 0 to 1.732.
+            // Spread is now Hue distance (0.0 to 0.5)
+            // Max possible distance in Hue circle is 0.5
             
-            // Normalize roughly to 0-1 range for easier quantization
-            // Let's assume max practical spread is around 1.0
-            float maxSpread = 1.0f;
+            float maxSpread = 0.5f;
             float normalized = Mathf.Clamp01(spread / maxSpread);
             
             return Mathf.Floor(normalized * steps) / (float)steps;
