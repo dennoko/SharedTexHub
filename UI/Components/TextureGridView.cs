@@ -10,14 +10,26 @@ namespace SharedTexHub.UI.Components
     {
         private Vector2 scrollPosition;
         private string searchString = "";
+        private SortOption sortOption = SortOption.Name;
+
+        public enum SortOption
+        {
+            Name,
+            Color,
+            ColorSpread
+        }
         
         public void Draw(List<TextureInfo> textures)
         {
             // Search Bar
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             searchString = GUILayout.TextField(searchString, EditorStyles.toolbarSearchField, GUILayout.Width(200));
-            // Add a flexible space so search bar doesn't stretch
             GUILayout.FlexibleSpace();
+            
+            // Sort Option
+            GUILayout.Label("Sort by:", GUILayout.Width(50));
+            sortOption = (SortOption)EditorGUILayout.EnumPopup(sortOption, GUILayout.Width(100));
+
             GUILayout.EndHorizontal();
 
             // Filter
@@ -26,6 +38,9 @@ namespace SharedTexHub.UI.Components
             {
                 filtered = textures.Where(t => t.path.IndexOf(searchString, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             }
+
+            // Sort
+            filtered = SortTextures(filtered);
 
             if (filtered.Count == 0)
             {
@@ -145,6 +160,25 @@ namespace SharedTexHub.UI.Components
             }
             
             GUILayout.EndVertical();
+        }
+        private List<TextureInfo> SortTextures(List<TextureInfo> list)
+        {
+            switch (sortOption)
+            {
+                case SortOption.Name:
+                    return list.OrderBy(t => t.path).ToList();
+                case SortOption.Color:
+                    return list.OrderBy(t => t.mainHsv.x) // Hue
+                               .ThenBy(t => t.mainHsv.y) // Saturation
+                               .ThenBy(t => t.mainHsv.z) // Value
+                               .ToList();
+                case SortOption.ColorSpread:
+                    return list.OrderBy(t => t.mainHsv.x) // Hue
+                               .ThenBy(t => t.colorSpread) // Spread (Low to High? or High to Low? let's go Low to High for "clean" to "dirty")
+                               .ToList();
+                default:
+                    return list;
+            }
         }
     }
 }

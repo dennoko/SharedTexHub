@@ -61,6 +61,12 @@ namespace SharedTexHub.Logic
                     info.hash = HashGenerator.GetHash(info.path);
                 }
 
+                // Analyze Color if needed
+                if (info.colorGrid == null || info.colorGrid.Length == 0)
+                {
+                    ColorAnalyzer.Analyze(info);
+                }
+
                 Database.Add(info);
             }
         }
