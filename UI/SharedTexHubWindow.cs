@@ -8,7 +8,7 @@ namespace SharedTexHub.UI
 {
     public class SharedTexHubWindow : EditorWindow
     {
-        [MenuItem("Tools/SharedTexHub/Open Window")]
+        [MenuItem("dennokoworks/TextureHub")]
         public static void ShowWindow()
         {
             GetWindow<SharedTexHubWindow>("SharedTexHub");

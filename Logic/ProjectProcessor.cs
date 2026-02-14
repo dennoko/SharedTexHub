@@ -25,10 +25,11 @@ namespace SharedTexHub.Logic
             }
         }
 
-        [MenuItem("Tools/SharedTexHub/Force Full Scan")]
+        [MenuItem("dennokoworks/Force Scan")]
         public static void FullScan()
         {
             DatabaseManager.Clear();
+            HashGenerator.ClearCache();
             
             string[] guids = AssetDatabase.FindAssets("t:Material");
             List<ITextureScanner> scanners = new List<ITextureScanner>

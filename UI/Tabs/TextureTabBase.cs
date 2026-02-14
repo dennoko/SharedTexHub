@@ -48,6 +48,8 @@ namespace SharedTexHub.UI.Tabs
         {
             cachedTextures = DatabaseManager.Database.textures
                 .Where(t => t.category == TargetCategory)
+                .GroupBy(t => t.hash) // Group by hash
+                .Select(g => g.First()) // Select the first one from each group
                 .ToList();
         }
     }

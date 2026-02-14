@@ -52,9 +52,15 @@ namespace SharedTexHub.Logic
 
         public static void AddOrUpdate(TextureInfo info)
         {
-            // Avoid duplicates
+            // Avoid duplicates based on GUID and Category
             if (!Database.textures.Any(t => t.guid == info.guid && t.category == info.category))
             {
+                // Compute Hash if needed
+                if (string.IsNullOrEmpty(info.hash))
+                {
+                    info.hash = HashGenerator.GetHash(info.path);
+                }
+
                 Database.Add(info);
             }
         }

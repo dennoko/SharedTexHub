@@ -8,6 +8,7 @@ namespace SharedTexHub.Data
         public string guid;
         public string path;
         public Category category;
+        public string hash;
 
         public TextureInfo(string guid, string path, Category category)
         {
