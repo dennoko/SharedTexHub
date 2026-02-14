@@ -101,5 +101,27 @@ namespace SharedTexHub.Logic
                 Debug.Log($"[SharedTexHub] Removed {removedCount} obsolete items.");
             }
         }
+
+        public static void AddIgnore(string guid)
+        {
+            if (!Database.ignoredGuids.Contains(guid))
+            {
+                Database.ignoredGuids.Add(guid);
+                Save();
+            }
+        }
+
+        public static void RemoveIgnore(string guid)
+        {
+            if (Database.ignoredGuids.Remove(guid))
+            {
+                Save();
+            }
+        }
+
+        public static bool IsIgnored(string guid)
+        {
+            return Database.ignoredGuids.Contains(guid);
+        }
     }
 }

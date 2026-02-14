@@ -33,6 +33,9 @@ namespace SharedTexHub.UI.Components
         private SortOption lastSortOption = SortOption.Color;
         private int lastRawListCount = -1;
 
+        private bool showIgnored = false;
+        private bool lastShowIgnored = false;
+
         public static bool ShowDebugColor { get; set; } = false;
 
         public void Draw(List<TextureInfo> textures, Category currentCategory)
@@ -55,6 +58,14 @@ namespace SharedTexHub.UI.Components
 
             // Debug Toggle
             ShowDebugColor = GUILayout.Toggle(ShowDebugColor, "Debug", EditorStyles.toolbarButton, GUILayout.Width(50));
+            
+            // Show Ignored Toggle
+            bool newShowIgnored = GUILayout.Toggle(showIgnored, "Show Ignored", EditorStyles.toolbarButton, GUILayout.Width(90));
+            if (newShowIgnored != showIgnored)
+            {
+                showIgnored = newShowIgnored;
+                cachedList = null; // Invalidate cache
+            }
 
             GUILayout.FlexibleSpace();
             
@@ -71,7 +82,7 @@ namespace SharedTexHub.UI.Components
 
             // Refresh cache if needed
             // Check reference equality first (fastest), then count
-            if (cachedList == null || textures != lastSourceList || textures.Count != lastRawListCount)
+            if (cachedList == null || textures != lastSourceList || textures.Count != lastRawListCount || showIgnored != lastShowIgnored)
             {
                 UpdateCache(textures);
             }
@@ -197,9 +208,22 @@ namespace SharedTexHub.UI.Components
         {
             // Filter
             IEnumerable<TextureInfo> filtered = sourceList;
+
+            // Ignore Filter
+            if (showIgnored)
+            {
+                // Show ONLY ignored items
+                filtered = filtered.Where(t => SharedTexHub.Logic.DatabaseManager.IsIgnored(t.guid));
+            }
+            else
+            {
+                // Show ONLY non-ignored items
+                filtered = filtered.Where(t => !SharedTexHub.Logic.DatabaseManager.IsIgnored(t.guid));
+            }
+
             if (!string.IsNullOrEmpty(searchString))
             {
-                filtered = sourceList.Where(t => t.path.IndexOf(searchString, System.StringComparison.OrdinalIgnoreCase) >= 0);
+                filtered = filtered.Where(t => t.path.IndexOf(searchString, System.StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             // Sort
@@ -210,6 +234,7 @@ namespace SharedTexHub.UI.Components
             lastSortOption = sortOption;
             lastSourceList = sourceList;
             lastRawListCount = sourceList.Count;
+            lastShowIgnored = showIgnored;
         }
 
         private IEnumerable<TextureInfo> SortTextures(IEnumerable<TextureInfo> list)
@@ -341,10 +366,33 @@ namespace SharedTexHub.UI.Components
                          if (rect.Contains(e.mousePosition))
                          {
                             GenericMenu menu = new GenericMenu();
+                            
+                            // Copy Path/GUID
                             menu.AddItem(new GUIContent("Copy to Library"), false, () => 
                             {
                                 SharedTexHub.Logic.AssetManager.CopyToLibrary(info);
                             });
+
+                            menu.AddSeparator("");
+
+                            // Ignore / Restore
+                            if (showIgnored)
+                            {
+                                menu.AddItem(new GUIContent("Restore"), false, () => 
+                                {
+                                    SharedTexHub.Logic.DatabaseManager.RemoveIgnore(info.guid);
+                                    cachedList = null; // Refresh
+                                });
+                            }
+                            else
+                            {
+                                menu.AddItem(new GUIContent("Ignore"), false, () => 
+                                {
+                                    SharedTexHub.Logic.DatabaseManager.AddIgnore(info.guid);
+                                    cachedList = null; // Refresh
+                                });
+                            }
+
                             menu.ShowAsContext();
                             e.Use();
                          }
