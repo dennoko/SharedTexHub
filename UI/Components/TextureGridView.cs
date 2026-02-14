@@ -168,17 +168,53 @@ namespace SharedTexHub.UI.Components
                 case SortOption.Name:
                     return list.OrderBy(t => t.path).ToList();
                 case SortOption.Color:
-                    return list.OrderBy(t => t.mainHsv.x) // Hue
+                    return list.OrderBy(t => !IsGrayscale(t.mainHsv.y)) // Grayscale first (IsGrayscale=true comes before false? No, bool sort: False then True. So !IsGrayscale for Grayscale first)
+                               // Actually: OrderBy(bool) puts False first, then True.
+                               // We want IsGrayscale=true to be first.
+                               // So OrderByDescending(IsGrayscale)
+                               .OrderByDescending(t => IsGrayscale(t.mainHsv.y)) 
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeHue(t.mainHsv.x)) // If Gray: sort by Value. Else: sort by Hue
                                .ThenBy(t => t.mainHsv.y) // Saturation
                                .ThenBy(t => t.mainHsv.z) // Value
                                .ToList();
                 case SortOption.ColorSpread:
-                    return list.OrderBy(t => t.mainHsv.x) // Hue
-                               .ThenBy(t => t.colorSpread) // Spread (Low to High? or High to Low? let's go Low to High for "clean" to "dirty")
+                    // 1. Grayscale Check
+                    // 2. Quantized Spread (10 steps)
+                    // 3. Quantized Hue
+                    return list.OrderByDescending(t => IsGrayscale(t.mainHsv.y))
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? t.mainHsv.z : QuantizeSpread(t.colorSpread, 10)) // If Gray: sort by Value. Else: sort by Spread
+                               .ThenBy(t => IsGrayscale(t.mainHsv.y) ? 0 : QuantizeHue(t.mainHsv.x)) // If Gray: ignore Hue. Else: sort by Hue
                                .ToList();
                 default:
                     return list;
             }
+        }
+
+        private bool IsGrayscale(float saturation)
+        {
+            return saturation < 0.15f; // Threshold for grayscale
+        }
+
+        // Quantize hue to reduce fine-grained sorting noise
+        // Hue is 0-1. Let's make 24 steps (every 15 degrees)
+        private float QuantizeHue(float hue)
+        {
+            int steps = 24;
+            return Mathf.Floor(hue * steps) / (float)steps;
+        }
+
+        private float QuantizeSpread(float spread, int steps)
+        {
+            // Spread is arbitrary value, but likely 0-1 range if normalized?
+            // ColorAnalyzer uses RGB distance sum / count. Max distance in RGB (0-1) is sqrt(3) ~= 1.732
+            // So spread is roughly 0 to 1.732.
+            
+            // Normalize roughly to 0-1 range for easier quantization
+            // Let's assume max practical spread is around 1.0
+            float maxSpread = 1.0f;
+            float normalized = Mathf.Clamp01(spread / maxSpread);
+            
+            return Mathf.Floor(normalized * steps) / (float)steps;
         }
     }
 }
