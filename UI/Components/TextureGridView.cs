@@ -19,6 +19,8 @@ namespace SharedTexHub.UI.Components
             ColorSpread
         }
         
+        private float itemSize = 100f; // Default size
+
         public void Draw(List<TextureInfo> textures)
         {
             // Search Bar
@@ -51,7 +53,7 @@ namespace SharedTexHub.UI.Components
             // Web-style Grid
             float windowWidth = EditorGUIUtility.currentViewWidth;
             float padding = 10f;
-            float itemSize = 100f;
+            // float itemSize = 100f; // Removed local declaration
             float spacing = 5f;
             int columns = Mathf.Max(1, (int)((windowWidth - padding * 2) / (itemSize + spacing)));
             
@@ -85,6 +87,14 @@ namespace SharedTexHub.UI.Components
             
             GUILayout.EndVertical();
             GUILayout.EndScrollView();
+
+            // Footer with Scale Slider
+            GUILayout.BeginHorizontal(EditorStyles.toolbar);
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("Scale:", GUILayout.Width(40));
+            itemSize = GUILayout.HorizontalSlider(itemSize, 50f, 200f, GUILayout.Width(100));
+            GUILayout.Space(10);
+            GUILayout.EndHorizontal();
         }
 
         private void DrawTextureItem(TextureInfo info, float size)
