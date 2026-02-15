@@ -4,98 +4,96 @@ using SharedTexHub.Data;
 using SharedTexHub.Logic.Scanner;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SharedTexHub.Logic
 {
     public static class ScannerManager
     {
         private static bool isScanning = false;
-        private static IEnumerator<float> scanEnumerator;
+        private static CancellationTokenSource cancelSource;
         
         public static bool IsScanning => isScanning;
         public static float Progress { get; private set; }
         
         // Configuration
-        private const float MAX_TIME_PER_FRAME = 0.01f; // 10ms
-
-        public static void StartFullScan(bool forceRebuild = false)
+        private const float MAX_TIME_PER_FRAME_MS = 10f; // 10ms budget per frame
+        
+        public static async void StartFullScan(bool forceRebuild = false)
         {
             if (isScanning) return;
             
             isScanning = true;
             Progress = 0f;
-            scanEnumerator = RunFullScan(forceRebuild);
+            cancelSource = new CancellationTokenSource();
             
-            EditorApplication.update += UpdateScan;
-        }
-
-        private static void UpdateScan()
-        {
-            if (!isScanning || scanEnumerator == null)
-            {
-                StopScan();
-                return;
-            }
-
             try
             {
-                // Continue execution until it yields or completes
-                // The enumerator returns 'progress' (0.0 to 1.0)
-                if (scanEnumerator.MoveNext())
-                {
-                    Progress = scanEnumerator.Current;
-                }
-                else
-                {
-                    // Finished
-                    StopScan();
-                    Debug.Log("[SharedTexHub] Scan Completed Successfully.");
-                }
+                await RunFullScan(forceRebuild, cancelSource.Token);
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"[SharedTexHub] Scan Failed: {e}");
+                Debug.LogError($"[SharedTexHub] Scan error: {e}");
+            }
+            finally
+            {
                 StopScan();
             }
         }
 
-        private static void StopScan()
+        public static void StopScan()
         {
+            if (cancelSource != null)
+            {
+                cancelSource.Cancel();
+                cancelSource.Dispose();
+                cancelSource = null;
+            }
             isScanning = false;
-            scanEnumerator = null;
-            EditorApplication.update -= UpdateScan;
             EditorUtility.ClearProgressBar();
         }
 
-        private static IEnumerator<float> RunFullScan(bool forceRebuild)
+        public static event System.Action OnProgressChanged;
+
+        private static async Task RunFullScan(bool forceRebuild, CancellationToken token)
         {
-            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            System.Diagnostics.Stopwatch totalWatch = System.Diagnostics.Stopwatch.StartNew();
+            System.Diagnostics.Stopwatch frameWatch = System.Diagnostics.Stopwatch.StartNew();
+
             HashSet<(string, Category)> visitedItems = new HashSet<(string, Category)>();
             
             // Initialization
             if (forceRebuild)
             {
                 DatabaseManager.Clear();
-                DatabaseManager.Save(); // Ensure empty state is saved/notified
+                DatabaseManager.Save(); 
                 Debug.Log("[SharedTexHub] Force Rebuild: Database cleared.");
             }
 
             HashGenerator.ClearCache();
             
-            yield return 0.05f;
+            await Task.Yield(); // Let UI update
 
             // 1. Scan Manual Folders
             foreach (Category category in System.Enum.GetValues(typeof(Category)))
             {
-                var textures = FolderScanner.Scan(category);
+                if (token.IsCancellationRequested) return;
+
+                var textures = FolderScanner.Scan(category); // This is main thread but fast (just finding assets)
                 foreach (var t in textures)
                 {
-                    DatabaseManager.AddOrUpdate(t);
+                    await DatabaseManager.AddOrUpdateAsync(t); // Async analysis
                     visitedItems.Add((t.guid, t.category));
+
+                    if (frameWatch.ElapsedMilliseconds > MAX_TIME_PER_FRAME_MS)
+                    {
+                        await Task.Yield();
+                        frameWatch.Restart();
+                        OnProgressChanged?.Invoke();
+                    }
                 }
             }
-
-            yield return 0.1f;
 
             // 2. Scan Materials
             string[] guids = AssetDatabase.FindAssets("t:Material");
@@ -115,48 +113,46 @@ namespace SharedTexHub.Logic
 
             foreach (string path in paths)
             {
+                if (token.IsCancellationRequested) return;
                 current++;
+                Progress = (float)current / total;
                 
-                // Time Check
-                if (!stopwatch.IsRunning) stopwatch.Start();
-                else if (stopwatch.Elapsed.TotalSeconds > MAX_TIME_PER_FRAME)
+                // Frame Budget Check
+                if (frameWatch.ElapsedMilliseconds > MAX_TIME_PER_FRAME_MS)
                 {
-                    // Yield control back to Editor
-                    EditorUtility.DisplayProgressBar("SharedTexHub", $"Scanning Materials... {current}/{total}", (float)current / total);
-                    yield return 0.1f + (0.9f * ((float)current / total));
-                    stopwatch.Reset();
-                    stopwatch.Start();
+                    await Task.Yield();
+                    frameWatch.Restart();
+                    OnProgressChanged?.Invoke();
                 }
 
                 Material mat = AssetDatabase.LoadAssetAtPath<Material>(path);
                 if (mat == null) continue;
 
+
                 foreach (var scanner in scanners)
                 {
                     foreach (var info in scanner.Scan(mat))
                     {
-                        DatabaseManager.AddOrUpdate(info);
+                        await DatabaseManager.AddOrUpdateAsync(info); // This awaits the background analysis
                         visitedItems.Add((info.guid, info.category));
                     }
                 }
             }
             
-            stopwatch.Stop();
+            totalWatch.Stop();
+            Debug.Log($"[SharedTexHub] Scan Completed in {totalWatch.Elapsed.TotalSeconds:F2}s");
             
             // Finalize
             DatabaseManager.CleanupExcept(visitedItems);
             DatabaseManager.Save();
             
-            yield return 1.0f;
+            EditorUtility.ClearProgressBar();
         }
         
         // For incremental updates (called from AssetPostprocessor)
-        public static void ScanSpecificMaterials(string[] paths)
+        public static async void ScanSpecificMaterials(string[] paths)
         {
-             // If full scan is running, maybe ignore? Or queue?
-             // Since this is usually small, we can run it synchronously or start a mini-coroutine.
-             // For simplicity, let's just run it synchronously but efficiently.
-             
+             // Fire and forget
              List<ITextureScanner> scanners = new List<ITextureScanner>
             {
                 new MatCapScanner(),
@@ -166,9 +162,6 @@ namespace SharedTexHub.Logic
                 new DecalScanner()
             };
 
-            // Use 'delayCall' to ensure we are not in the middle of import process if needed, 
-            // but PostprocessAllAssets is usually safe.
-             
              foreach (string path in paths)
              {
                  Material mat = AssetDatabase.LoadAssetAtPath<Material>(path);
@@ -178,8 +171,7 @@ namespace SharedTexHub.Logic
                  {
                      foreach (var info in scanner.Scan(mat))
                      {
-                         // Check duplications inside DatabaseManager
-                         DatabaseManager.AddOrUpdate(info);
+                         await DatabaseManager.AddOrUpdateAsync(info);
                      }
                  }
              }

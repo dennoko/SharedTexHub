@@ -50,7 +50,7 @@ namespace SharedTexHub.Logic
             Database.Clear();
         }
 
-        public static void AddOrUpdate(TextureInfo info)
+        public static async System.Threading.Tasks.Task AddOrUpdateAsync(TextureInfo info)
         {
             if (string.IsNullOrEmpty(info.path) || !File.Exists(info.path)) return;
 
@@ -64,13 +64,12 @@ namespace SharedTexHub.Logic
                 {
                     existing.path = info.path;
                     existing.hash = HashGenerator.GetHash(info.path);
-                    ColorAnalyzer.Analyze(existing);
+                    await ColorAnalyzer.AnalyzeAsync(existing);
                     existing.lastWriteTime = currentTicks;
-                    // Debug.Log($"[SharedTexHub] Updated: {info.path}");
                 }
                 else
                 {
-                    // Just update path if moved, but skip heavy analysis
+                    // Just update path if moved
                     existing.path = info.path; 
                 }
             }
@@ -85,12 +84,18 @@ namespace SharedTexHub.Logic
                 
                 if (info.colorGrid == null || info.colorGrid.Length == 0)
                 {
-                    ColorAnalyzer.Analyze(info);
+                    await ColorAnalyzer.AnalyzeAsync(info);
                 }
 
                 Database.Add(info);
-                // Debug.Log($"[SharedTexHub] Added: {info.path}");
             }
+        }
+
+        public static void AddOrUpdate(TextureInfo info)
+        {
+             // Synchronous wrapper (Not recommended for bulk operations)
+             var task = AddOrUpdateAsync(info);
+             task.Wait();
         }
 
         public static void CleanupExcept(System.Collections.Generic.HashSet<(string guid, Category category)> validItems)

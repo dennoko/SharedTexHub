@@ -35,10 +35,14 @@ namespace SharedTexHub.UI
             tabs = new ITabView[] { matCapTab, tilingTab, normalTab, maskTab, decalTab };
             
             foreach(var tab in tabs) tab.OnEnable();
+            
+            SharedTexHub.Logic.ScannerManager.OnProgressChanged += Repaint;
         }
 
         private void OnDisable()
         {
+            SharedTexHub.Logic.ScannerManager.OnProgressChanged -= Repaint;
+            
             if (tabs != null)
             {
                 foreach(var tab in tabs) tab.OnDisable();
@@ -51,14 +55,31 @@ namespace SharedTexHub.UI
             selectedTab = GUILayout.Toolbar(selectedTab, tabNames, EditorStyles.toolbarButton);
             
 
-            // Force Scan Button
+            // Force Scan Button / Cancel Button
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(60)))
+            if (SharedTexHub.Logic.ScannerManager.IsScanning)
             {
-                // Force rebuild if Debug Mode is active
-                SharedTexHub.Logic.ScannerManager.StartFullScan(SharedTexHub.UI.Components.TextureGridView.ShowDebugColor);
+                if (GUILayout.Button("Cancel", EditorStyles.toolbarButton, GUILayout.Width(60)))
+                {
+                    SharedTexHub.Logic.ScannerManager.StopScan();
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(60)))
+                {
+                    // Force rebuild if Debug Mode is active
+                    SharedTexHub.Logic.ScannerManager.StartFullScan(SharedTexHub.UI.Components.TextureGridView.ShowDebugColor);
+                }
             }
             GUILayout.EndHorizontal();
+
+            // Progress Bar
+            if (SharedTexHub.Logic.ScannerManager.IsScanning)
+            {
+                Rect rect = GUILayoutUtility.GetRect(0, 20, GUILayout.ExpandWidth(true));
+                EditorGUI.ProgressBar(rect, SharedTexHub.Logic.ScannerManager.Progress, $"Scanning... {(int)(SharedTexHub.Logic.ScannerManager.Progress * 100)}%");
+            }
 
             if (tabs != null && selectedTab >= 0 && selectedTab < tabs.Length)
             {
